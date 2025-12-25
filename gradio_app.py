@@ -4,28 +4,21 @@ import os
 from ultralytics import YOLO
 import gradio as gr
 
-# -----------------------------
-# Load Model
-# -----------------------------
 model = YOLO("yolov8m.pt")
 
-# -----------------------------
-# Safe path to emoji images
-# -----------------------------
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
-happy_emoji = cv2.imread(os.path.join(BASE_DIR, "emojis/happy.png"), cv2.IMREAD_UNCHANGED)
-sad_emoji   = cv2.imread(os.path.join(BASE_DIR, "emojis/sad.png"), cv2.IMREAD_UNCHANGED)
-crown       = cv2.imread(os.path.join(BASE_DIR, "emojis/crown.png"), cv2.IMREAD_UNCHANGED)
+happy_emoji  = cv2.imread(os.path.join(BASE_DIR, "emojis/happy.png"), cv2.IMREAD_UNCHANGED)
+normal_emoji = cv2.imread(os.path.join(BASE_DIR, "emojis/normal.png"), cv2.IMREAD_UNCHANGED)
+sleep_emoji  = cv2.imread(os.path.join(BASE_DIR, "emojis/sleep.png"), cv2.IMREAD_UNCHANGED)
+crown        = cv2.imread(os.path.join(BASE_DIR, "emojis/crown.png"), cv2.IMREAD_UNCHANGED)
 
-print("Happy emoji loaded:", happy_emoji is not None)
-print("Sad emoji loaded:", sad_emoji is not None)
-print("Crown loaded:", crown is not None)
+print("Happy:", happy_emoji is not None)
+print("Normal:", normal_emoji is not None)
+print("Sleep:", sleep_emoji is not None)
+print("Crown:", crown is not None)
 
 
-# -----------------------------
-# Helper: Overlay PNG With Alpha
-# -----------------------------
 def overlay_png(background, overlay, x, y, w, h):
     if overlay is None:
         return background
@@ -50,15 +43,14 @@ def overlay_png(background, overlay, x, y, w, h):
     mask = mask[:y2-y1, :x2-x1]
 
     region = background[y1:y2, x1:x2]
-    background[y1:y2, x1:x2] = (overlay_crop * mask[..., None] +
-                                region * (1 - mask[..., None])).astype(np.uint8)
+    background[y1:y2, x1:x2] = (
+        overlay_crop * mask[..., None] +
+        region * (1 - mask[..., None])
+    ).astype(np.uint8)
 
     return background
 
 
-# -----------------------------
-# Main Processing Function
-# -----------------------------
 def process_image(image):
     img = np.array(image)
     results = model(img)[0]
@@ -76,7 +68,13 @@ def process_image(image):
         score = np.random.randint(60, 100)
         fun_scores.append(score)
 
-        emoji = happy_emoji if score > 80 else sad_emoji
+        if score >= 85:
+            emoji = happy_emoji
+        elif score >= 70:
+            emoji = normal_emoji
+        else:
+            emoji = sleep_emoji
+
         emoji_size = int((y2 - y1) * 0.25)
         emoji_y = y1 - emoji_size if y1 - emoji_size > 0 else y1
 
@@ -101,7 +99,10 @@ def process_image(image):
     return img
 
 
-# -----------------------------
-# Gradio UI
-# -----------------------------
-gr.Int
+gr.Interface(
+    fn=process_image,
+    inputs=gr.Image(type="pil"),
+    outputs=gr.Image(),
+    title="🐶 Animal Fun Score Predictor",
+    description="Upload animal image → Get Fun Score + Emoji + Crown 👑"
+).launch(share=True)
