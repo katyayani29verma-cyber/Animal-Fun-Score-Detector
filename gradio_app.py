@@ -134,4 +134,4 @@ iface = gr.Interface(
     description="Upload animal image → Get Fun Score + Emoji + Crown 👑"
 )
 
-iface.launch(share=true)
+iface.launch(share=True)
