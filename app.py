@@ -1,3 +1,10 @@
+import subprocess, sys
+subprocess.check_call([
+    sys.executable, "-m", "pip", "install",
+    "opencv-python-headless==4.8.1.78",
+    "ultralytics"
+])
+
 import streamlit as st
 import cv2
 import numpy as np
@@ -5,8 +12,9 @@ from ultralytics import YOLO
 from PIL import Image
 
 st.set_page_config(page_title="Animal Fun Score Predictor 🐶", layout="wide")
+st.title("🐶 Animal Fun Score Predictor")
+st.write("Upload pet images and let AI find who is the most playful! 🎉")
 
-# Load Model
 model = YOLO("yolov8m.pt")
 
 animal_classes = {
@@ -14,12 +22,16 @@ animal_classes = {
     "elephant", "bear", "zebra", "giraffe", "bird"
 }
 
-# Load Emojis
-happy_emoji = cv2.imread("emojis/happy.png", cv2.IMREAD_UNCHANGED)
-normal_emoji = cv2.imread("emojis/normal.png", cv2.IMREAD_UNCHANGED)
-sleep_emoji = cv2.imread("emojis/sleep.png", cv2.IMREAD_UNCHANGED)
-crown = cv2.imread("emojis/crown.png", cv2.IMREAD_UNCHANGED)
+def load_png(path):
+    try:
+        return cv2.imread(path, cv2.IMREAD_UNCHANGED)
+    except:
+        return None
 
+happy_emoji = load_png("emojis/happy.png")
+normal_emoji = load_png("emojis/normal.png")
+sleep_emoji = load_png("emojis/sleep.png")
+crown = load_png("emojis/crown.png")
 
 def overlay_png(bg, emoji, x, y, w, h):
     if emoji is None:
@@ -29,33 +41,22 @@ def overlay_png(bg, emoji, x, y, w, h):
         b,g,r,a = cv2.split(emoji)
     except:
         return bg
-
     mask = cv2.merge((a,a,a))
     emoji_bgr = cv2.merge((b,g,r))
-
     if y < 0: y = 0
     if x < 0: x = 0
     if y+h > bg.shape[0] or x+w > bg.shape[1]:
         return bg
-
-    roi = bg[y:y+h, x:x+w]
-
-    mask = mask.astype(float)/255
+    roi = bg[y:y+h, x:x+w].astype(float)
+    mask = (mask.astype(float) / 255)
     emoji_bgr = emoji_bgr.astype(float)
-    roi = roi.astype(float)
-
     fg = cv2.multiply(mask, emoji_bgr)
     bg2 = cv2.multiply(1.0 - mask, roi)
     out = cv2.add(fg, bg2)
-
     bg[y:y+h, x:x+w] = out
     return bg
 
-
-st.title("🐶 Animal Fun Score Predictor")
-st.write("Upload pet images and let AI find who is the most playful! 🎉")
-
-uploaded_files = st.file_uploader("Upload Images", accept_multiple_files=True)
+uploaded_files = st.file_uploader("Upload Images", type=["jpg","jpeg","png"], accept_multiple_files=True)
 
 leaderboard = []
 processed_images = {}
@@ -68,31 +69,23 @@ if st.button("Process Images"):
         for file in uploaded_files:
             img = Image.open(file)
             img = np.array(img)
-
             results = model(img)[0]
             boxes = results.boxes
-
             total_animals = sum(
                 1 for box in boxes
                 if model.names[int(box.cls[0])] in animal_classes
             )
-
             animal_data = []
-
             for box in boxes:
                 cls = int(box.cls[0])
                 conf = float(box.conf[0])
                 label = model.names[cls]
-
                 if label not in animal_classes:
                     continue
-
                 x1,y1,x2,y2 = map(int, box.xyxy[0])
                 width = x2-x1
                 height = y2-y1
-
                 aspect_ratio = height/float(width)
-
                 if aspect_ratio > 1.2:
                     posture = "Standing / Active"
                     posture_score = 20
@@ -102,41 +95,33 @@ if st.button("Process Images"):
                 else:
                     posture = "Neutral"
                     posture_score = 10
-
                 conf_score = conf * 70
                 crowd_bonus = min(total_animals * 5, 20)
-
                 fun_score = int(conf_score + crowd_bonus + posture_score)
                 fun_score = min(fun_score,100)
-
                 animal_data.append({
                     "score": fun_score,
                     "label": label,
                     "posture": posture,
                     "box": (x1,y1,x2,y2)
                 })
-
                 leaderboard.append({
                     "animal": label,
                     "score": fun_score,
                     "image": file.name
                 })
-
             if animal_data:
                 best = max(animal_data, key=lambda x:x["score"])
                 image_animals[file.name] = animal_data
-
                 for a in animal_data:
                     x1,y1,x2,y2 = a["box"]
                     color = (0,0,255) if a == best else (0,255,0)
-
                     if a["posture"] == "Standing / Active":
                         emoji = happy_emoji
                     elif a["posture"] == "Neutral":
                         emoji = normal_emoji
                     else:
                         emoji = sleep_emoji
-
                     cv2.rectangle(img,(x1,y1),(x2,y2),color,2)
                     cv2.putText(
                         img,
@@ -147,14 +132,11 @@ if st.button("Process Images"):
                         color,
                         2
                     )
-
                     emoji_size = int((y2-y1)*0.25)
                     emoji_y = y1-emoji_size if y1-emoji_size>0 else y1
                     img = overlay_png(img, emoji, x1, emoji_y, emoji_size, emoji_size)
-
             processed_images[file.name] = img
-
-        leaderboard = sorted(leaderboard, key=lambda x:x["score"], reverse=True)
+        leaderboard.sort(key=lambda x:x["score"], reverse=True)
 
         st.subheader("🏆 Leaderboard")
         for i,a in enumerate(leaderboard[:5],start=1):
