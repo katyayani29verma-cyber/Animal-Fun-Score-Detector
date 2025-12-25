@@ -125,4 +125,4 @@ demo = gr.Interface(
     description="Upload animal image → Get Fun Score + Emoji + Crown 👑"
 )
 
-demo.launch()
+demo.launch(share=True)
