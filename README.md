@@ -88,6 +88,34 @@ Fun AI Pet Tools
 
 Portfolio Projects
 
+## 🌍 Live Deployment
+
+You can try the hosted version of the project here:
+
+🔗 **Live Demo**  
+https://huggingface.co/spaces/Katyayani29/Animal-Fun-Score-Detector
+
+### ⚠️ Note About Deployment
+The hosted Space currently shows an **“Error” after uploading images** due to runtime compatibility and server dependency limitations on HuggingFace Spaces.
+
+However:
+
+- ✅ The complete model works perfectly in local environment  
+- ✅ It runs successfully via **Gradio locally**  
+- ✅ It runs correctly in **Terminal execution**  
+- ❌ Only the public hosted deployment is facing an integration/runtime issue
+
+Due to time constraints during submission, I could not fully resolve the Space runtime issue — but the full model logic, YOLO functionality, scoring system, emojis, leaderboard, and UI all work correctly in development.
+
+This demonstrates:
+- working Computer Vision pipeline
+- functioning scoring engine
+- emoji + crown visualization
+- leaderboard logic
+- Gradio-based UI integration
+
+I will continue improving and fixing the deployment version soon 😊
+
 ✨ Developed By
 
 Katyayani Verma
