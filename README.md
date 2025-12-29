@@ -7,19 +7,12 @@ It is fun, visually engaging, and a great example of Computer Vision + AI in act
 🚀 Features
 
 ✔ Detects multiple animals in images
-
 ✔ Calculates Fun / Playfulness Score
-
 ✔ Detects posture (Standing / Neutral / Sitting / Lying)
-
 ✔ Adds colorful emojis based on behavior 😄 🙂 😴
-
 ✔ Builds leaderboard across all images
-
 ✔ Highlights most playful animal with 👑 crown
-
 ✔ Saves processed output images
-
 ✔ Can be converted into a Web App (Streamlit)
 
 🧠 How It Works
@@ -42,7 +35,7 @@ Neutral → 🙂
 Sitting / Lying → 😴
 
 4️⃣ Leaderboard ranks animals across images
-5️⃣ The highest scoring animal becomes Global Champion
+5️⃣ Highest scoring animal becomes Global Champion 👑
 
 🧰 Tech Stack
 
@@ -69,13 +62,14 @@ streamlit run app.py
 
 Bounding boxes on animals
 
-Fun score text label
+Fun Score label
 
-Emojis on top of pets
+Emoji overlay on pets
 
 Leaderboard display
 
 Crown on happiest pet 👑
+
 (Visually awesome results!)
 
 🎯 Use Cases
@@ -88,63 +82,93 @@ Fun AI Pet Tools
 
 Portfolio Projects
 
-## 🌍 Live Deployment
+🌍 Live Deployment
 
 You can try the hosted version of the project here:
 
-🔗 **Live Demo**  
-https://huggingface.co/spaces/Katyayani29/Animal-Fun-Score-Detector
+🔗 Live Demo
+👉 https://huggingface.co/spaces/Katyayani29/Animal-Fun-Score-Detector
 
-### ⚠️ Note About Deployment
-The hosted Space currently shows an **“Error” after uploading images** due to runtime compatibility and server dependency limitations on HuggingFace Spaces.
+⚠️ Deployment Status
+
+The hosted Space currently shows an “Error after uploading images” due to:
+
+Runtime compatibility issues
+
+YOLO + HuggingFace dependency limitations
 
 However:
 
-- ✅ The complete model works perfectly in local environment  
-- ✅ It runs successfully via **Gradio locally**  
-- ✅ It runs correctly in **Terminal execution**  
-- ❌ Only the public hosted deployment is facing an integration/runtime issue
+✅ Works perfectly on local Gradio
 
-Due to time constraints during submission, I could not fully resolve the Space runtime issue — but the full model logic, YOLO functionality, scoring system, emojis, leaderboard, and UI all work correctly in development.
+✅ Works through Terminal execution
 
-This demonstrates:
-- working Computer Vision pipeline
-- functioning scoring engine
-- emoji + crown visualization
-- leaderboard logic
-- Gradio-based UI integration
+❌ Only public hosted deployment is affected
 
-I will continue improving and fixing the deployment version soon 😊
+Due to time constraints during submission, I couldn’t fully resolve it — but the project:
+
+Implements a working Computer Vision pipeline
+
+Has a functioning scoring engine
+
+Correct emoji + crown visualization
+
+Working leaderboard system
+
+Full Gradio UI integration
+
+I will continue improving and fixing deployment soon 😊
 
 👩‍💻 My Journey So Far
 
-I started my coding journey in May this year, beginning with C programming to build a strong foundation. Gradually, I moved into Python, and that’s where my curiosity for AI and Machine Learning really grew.
+I started my coding journey in May this year, beginning with C programming to build a strong foundation. Gradually, I moved to Python, where my curiosity for AI & Machine Learning really began.
 
-Over time, I developed a strong interest in the AIML field, and I plan to start learning it properly this semester. I’m also planning to work on a dedicated AI/ML project next year and continue improving my skills during the summer vacations.
+I have developed a strong interest in AIML and plan to learn it deeply this semester. I also plan to work on a dedicated AI/ML project next year and continue improving during my summer vacations.
 
-This project played a big role in motivating me to explore more — I genuinely find this field exciting, creative, and full of possibilities 🚀
-
+This project motivated me even more — I genuinely find this field:
+✨ exciting
+✨ creative
+✨ full of possibilities 🚀
 
 🧠 Challenges Faced
 
-The biggest challenge I faced in this project was deploying the application online. While my model worked smoothly on local runs through Gradio / Terminal, deployment introduced several unexpected issues that required a lot of debugging and troubleshooting.
+The biggest challenge was deploying the application online. While it worked smoothly locally through Gradio and Terminal, deployment introduced multiple unexpected issues.
 
-One of the major problems I faced was while uploading the project on Hugging Face Spaces. The issue was mainly related to YOLO version compatibility, which caused runtime failures during deployment. Through this, I learned that YOLO has different versions and model variants, and each behaves differently in terms of performance, compatibility, and detection accuracy. Some versions are optimized for speed, while others provide better recognition and precision — and choosing the right one really matters.
+🛑 Major Challenge
 
-Apart from these challenges, everything else was a great learning experience. Through this project, I:
+Uploading to Hugging Face Spaces caused failures mainly due to:
 
-Learned how YOLO models work and how to use them effectively
+YOLO version compatibility issues
 
-Worked with multiple Python libraries used in AI/ML
+Framework dependency conflicts
 
-Gained hands-on experience with Git & GitHub workflows
+Through this, I learned:
 
-Understood more about building real-world AI applications and handling practical issues beyond just coding
+YOLO has multiple versions and variants
 
-Even though deployment was tough, it taught me that real projects always come with unexpected challenges — but solving them is what truly makes learning meaningful 😊
+Each has different:
+
+Performance behavior
+
+Compatibility rules
+
+Recognition capability
+
+Some YOLO versions are optimized for speed, while others for accuracy — and choosing the right one really matters.
+
+✅ What I Learned
+
+Through this project, I gained:
+
+✔ Understanding of YOLO & object detection
+✔ Experience with AI/ML Python libraries
+✔ Knowledge of Git & GitHub workflows
+✔ Real-world AI application building experience
+✔ Problem-solving resilience
+
+Even though deployment was tough, it taught me that real-world projects come with real challenges — and solving them is what truly makes learning meaningful 😊
 
 ✨ Developed By
 
 Katyayani Verma
-With guidance & code collaboration using AI 🤖
-
+With guidance & collaborative support using AI 🤖
