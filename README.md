@@ -1,174 +1,161 @@
-🐶 Animal Fun Score Predictor
+# 🐶 Animal Fun Score Predictor
 
-This project is an AI-powered Animal Fun / Playfulness Score Detector that analyzes pets in images, detects animals using YOLO, evaluates their posture, assigns a Fun Score, overlays emojis, builds a leaderboard, and finally crowns the global champion with a 👑 crown.
+This project is an **AI-powered Animal Fun / Playfulness Score Detector** that analyzes pets in images, detects animals using **YOLO**, evaluates their posture, assigns a **Fun Score**, overlays emojis, builds a **leaderboard**, and finally crowns the global champion with a 👑 crown.
 
-It is fun, visually engaging, and a great example of Computer Vision + AI in action.
+It is **fun, visually engaging**, and a great example of **Computer Vision + AI in action**.
 
-🚀 Features
+---
 
-✔ Detects multiple animals in images
-✔ Calculates Fun / Playfulness Score
-✔ Detects posture (Standing / Neutral / Sitting / Lying)
-✔ Adds colorful emojis based on behavior 😄 🙂 😴
-✔ Builds leaderboard across all images
-✔ Highlights most playful animal with 👑 crown
-✔ Saves processed output images
-✔ Can be converted into a Web App (Streamlit)
+## 🚀 Features
 
-🧠 How It Works
+✔ Detects **multiple animals** in images  
+✔ Calculates **Fun / Playfulness Score**  
+✔ Detects **posture** (Standing / Neutral / Sitting / Lying)  
+✔ Adds colorful emojis 😄 🙂 😴  
+✔ Builds leaderboard  
+✔ Highlights most playful animal with 👑 crown  
+✔ Saves processed output images  
+✔ Can be converted to **Streamlit Web App**
 
-1️⃣ YOLO detects animals and provides bounding boxes
+---
+
+## 🧠 How It Works
+
+1️⃣ YOLO detects animals and provides **bounding boxes**  
 2️⃣ Fun Score is calculated using:
-
-Detection confidence
-
-Number of animals in frame (crowd fun bonus)
-
-Posture score
+- Detection confidence  
+- Number of animals in frame (**crowd fun bonus**)  
+- Posture score  
 
 3️⃣ Emojis are assigned based on posture:
+- Standing / Active → 😄 Happy  
+- Neutral → 🙂  
+- Sitting / Lying → 😴  
 
-Standing / Active → 😄 Happy
+4️⃣ Leaderboard ranks animals across images  
+5️⃣ **Highest scoring animal becomes Global Champion 👑**
 
-Neutral → 🙂
+---
 
-Sitting / Lying → 😴
+## 🧰 Tech Stack
 
-4️⃣ Leaderboard ranks animals across images
-5️⃣ Highest scoring animal becomes Global Champion 👑
+- Python  
+- YOLO (Ultralytics)  
+- OpenCV  
+- NumPy  
+- Pillow  
+- Streamlit (for website version)
 
-🧰 Tech Stack
+---
 
-Python
+## ▶️ Running the Project Locally
 
-YOLO (Ultralytics)
-
-OpenCV
-
-NumPy
-
-Pillow
-
-Streamlit (for website version)
-
-▶️ Running the Project Locally
-1️⃣ Install dependencies
+### 1️⃣ Install dependencies
+```bash
 pip install -r requirements.txt
+```
 
-2️⃣ Run App (if using Streamlit)
+### 2️⃣ Run App (if using Streamlit)
+```bash
 streamlit run app.py
+```
 
-📸 Output Highlights
+---
 
-Bounding boxes on animals
+## 📸 Output Highlights
 
-Fun Score label
+- Bounding boxes on animals  
+- Fun score label  
+- Emoji overlay on pets  
+- Leaderboard display  
+- Crown on happiest pet 👑  
 
-Emoji overlay on pets
+---
 
-Leaderboard display
+## 🎯 Use Cases
 
-Crown on happiest pet 👑
+- Academic AI Projects  
+- Computer Vision Learning  
+- Fun AI Pet Tools  
+- Portfolio Projects  
 
-(Visually awesome results!)
+---
 
-🎯 Use Cases
-
-Academic AI Projects
-
-Computer Vision Learning
-
-Fun AI Pet Tools
-
-Portfolio Projects
-
-🌍 Live Deployment
+## 🌍 Live Deployment
 
 You can try the hosted version of the project here:
 
-🔗 Live Demo
-👉 https://huggingface.co/spaces/Katyayani29/Animal-Fun-Score-Detector
+🔗 **Live Demo**  
+https://huggingface.co/spaces/Katyayani29/Animal-Fun-Score-Detector
 
-⚠️ Deployment Status
+---
 
-The hosted Space currently shows an “Error after uploading images” due to:
+### ⚠️ Deployment Status
 
-Runtime compatibility issues
-
-YOLO + HuggingFace dependency limitations
+The hosted Space currently shows an **“Error after uploading images”** due to:
+- Runtime compatibility issues  
+- YOLO + HuggingFace dependency limitations  
 
 However:
 
-✅ Works perfectly on local Gradio
+- ✅ Works perfectly on **local Gradio**
+- ✅ Works correctly via **Terminal execution**
+- ❌ Only public hosted deployment is affected
 
-✅ Works through Terminal execution
+Due to time constraints during submission, I couldn’t fully resolve deployment — BUT this project demonstrates:
 
-❌ Only public hosted deployment is affected
+- Working **Computer Vision pipeline**  
+- Functional **Fun Scoring Engine**  
+- Correct **Emoji + Crown Visualization**  
+- Working **Leaderboard System**  
+- Full **Gradio UI Integration**
 
-Due to time constraints during submission, I couldn’t fully resolve it — but the project:
+Deployment fix is planned soon 😊  
 
-Implements a working Computer Vision pipeline
+---
 
-Has a functioning scoring engine
+## 👩‍💻 My Journey So Far
 
-Correct emoji + crown visualization
+I started my coding journey **in May this year**, beginning with **C programming** to build a foundation. Gradually, I moved into **Python**, where my curiosity for **AI & Machine Learning** truly began.
 
-Working leaderboard system
-
-Full Gradio UI integration
-
-I will continue improving and fixing deployment soon 😊
-
-👩‍💻 My Journey So Far
-
-I started my coding journey in May this year, beginning with C programming to build a strong foundation. Gradually, I moved to Python, where my curiosity for AI & Machine Learning really began.
-
-I have developed a strong interest in AIML and plan to learn it deeply this semester. I also plan to work on a dedicated AI/ML project next year and continue improving during my summer vacations.
+I developed a strong interest in **AIML** and plan to learn it thoroughly this semester. I also plan to build a dedicated AI/ML project next year and continue learning during my summer vacations.
 
 This project motivated me even more — I genuinely find this field:
-✨ exciting
-✨ creative
-✨ full of possibilities 🚀
+- exciting  
+- creative  
+- full of possibilities 🚀  
 
-🧠 Challenges Faced
+---
 
-The biggest challenge was deploying the application online. While it worked smoothly locally through Gradio and Terminal, deployment introduced multiple unexpected issues.
+## 🧠 Challenges Faced
 
-🛑 Major Challenge
+The biggest challenge was **deploying the application online**.
 
-Uploading to Hugging Face Spaces caused failures mainly due to:
+While the project worked smoothly on **Gradio locally** and through **Terminal execution**, deployment on Hugging Face introduced unexpected errors.
 
-YOLO version compatibility issues
+A major issue came from **YOLO version compatibility**.  
+I learned that:
 
-Framework dependency conflicts
+- YOLO has **multiple versions and model variants**
+- Each behaves differently in:
+  - Performance  
+  - Compatibility  
+  - Recognition capability  
 
-Through this, I learned:
+Some versions are optimized for speed, while others provide better accuracy — and choosing the right one really matters.
 
-YOLO has multiple versions and variants
+Apart from that, this project helped me:
 
-Each has different:
+✔ Understand YOLO and object detection  
+✔ Work with AI/ML Python libraries  
+✔ Gain hands-on Git & GitHub experience  
+✔ Handle real-world project challenges  
 
-Performance behavior
+Even though deployment was tough, it taught me valuable lessons — real-world projects always come with challenges, and solving them is what truly makes learning meaningful 😊  
 
-Compatibility rules
+---
 
-Recognition capability
+## ✨ Developed By
 
-Some YOLO versions are optimized for speed, while others for accuracy — and choosing the right one really matters.
-
-✅ What I Learned
-
-Through this project, I gained:
-
-✔ Understanding of YOLO & object detection
-✔ Experience with AI/ML Python libraries
-✔ Knowledge of Git & GitHub workflows
-✔ Real-world AI application building experience
-✔ Problem-solving resilience
-
-Even though deployment was tough, it taught me that real-world projects come with real challenges — and solving them is what truly makes learning meaningful 😊
-
-✨ Developed By
-
-Katyayani Verma
+**Katyayani Verma**  
 With guidance & collaborative support using AI 🤖
